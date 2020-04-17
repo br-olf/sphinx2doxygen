@@ -3,11 +3,12 @@
 import argparse
 from pathlib import Path
 
-import reST2Google
+import pep2google
 
 if __name__ == "__main__":
 
-    parser = argparse.ArgumentParser(description='Rewrites python docstring code commenting style from reST to Google')
+    parser = argparse.ArgumentParser(
+        description='Rewrites python documentation string code commenting from Sphinx to Doxygen format.')
     parser.add_argument('-f', '--force', action='store_const', const=True, default=False,
                         help='do not ask before overwriting files')
     parser.add_argument('-i', '--input-dir', metavar='DIR', type=str, required=True,
@@ -61,7 +62,7 @@ if __name__ == "__main__":
         with input_file.open(mode='r') as f:
             content = f.read()
 
-        output = reST2Google.parse_file_contets(content)
+        output = pep2google.parse_file_contets(content)
 
         with output_file.open(mode='w') as f:
             f.write(output)
