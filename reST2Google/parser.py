@@ -4,8 +4,8 @@ reparam = re.compile(r"(?<=:param).*?(?=:)")
 reraises = re.compile(r"(?<=:raises).*?(?=:)")
 rereturns = re.compile(r"(?<=:returns).*?(?=:)")
 
-def editdocstr(docstr, offset):
 
+def editdocstr(docstr, offset):
     description = []
     params = []
     paramsd = []
@@ -22,7 +22,7 @@ def editdocstr(docstr, offset):
 
         if m_param:
             begin, end = m_param.span()
-            txt = line[end+1:]
+            txt = line[end + 1:]
             paramsd.append(txt.strip())
             params.append(m_param.group().strip())
             continue
@@ -75,9 +75,8 @@ def editdocstr(docstr, offset):
 
     return result
 
-if __name__ == "__main__":
-    with open("/home/olaf/Studium_VOs_RKU/Masterarbeit/fossil/dbcrypt/dbconnection.py", "r") as f:
-        content = f.read()
+
+def parse_file_contets(content: str) -> str:
     result = ""
     indoc = False
     atmcounter = 0
@@ -112,8 +111,4 @@ if __name__ == "__main__":
                 offset = current_offset - 3
             indoc = not indoc
 
-
-    print(result)
-    print()
-
-
+    return result
